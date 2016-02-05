@@ -28,10 +28,11 @@
     state: present
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
+    insertbefore: "export PATH"
   with_items:
     -
       regexp: "^PLANT_UML="
       line: "PLANT_UML={{ plantuml_home }}"
     -
-      regexp: "^PATH=$PLANT_UML"
+      regexp: "^PATH=\$PLANT_UML"
       line: "PATH=$PLANT_UML/plantuml.jar:$PATH"
