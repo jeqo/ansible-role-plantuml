@@ -12,3 +12,26 @@
     url: "{{ plantuml_url }}"
     dest: "{{ plantuml_home }}"
     owner: "{{ ansible_user_id }}"
+    mode: 0755
+
+- set_fact:
+    plantuml_profile_path: {{ ansible_env.HOME }}/.profile
+  when: ansible_os_family == "Debian"
+
+- set_fact:
+    plantuml_profile_path: {{ ansible_env.HOME }}/.bash_profile
+  when: ansible_os_family == "RedHat"
+
+- name: add to path
+  lineinfile:
+    dest: "{{ plantuml_profile_path}}"
+    state: present
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    -
+      regexp: "^PLANT_UML="
+      line: "PLANT_UML={{ plantuml_home }}"
+    -
+      regexp: "^PATH=$PLANT_UML"
+      line: "PATH=$PLANT_UML/plantuml.jar:$PATH"
