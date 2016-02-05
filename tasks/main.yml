@@ -31,8 +31,8 @@
     insertbefore: "export PATH"
   with_items:
     -
-      regexp: "^PLANT_UML="
+      regexp: ^PLANT_UML=
       line: "PLANT_UML={{ plantuml_home }}"
     -
-      regexp: "^PATH=\$PLANT_UML"
-      line: "PATH=$PLANT_UML/plantuml.jar:$PATH"
+      regexp: ^PATH=\$PLANT_UML
+      line: PATH=$PLANT_UML/plantuml.jar:$PATH
