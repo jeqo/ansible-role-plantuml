@@ -1,0 +1,14 @@
+---
+# tasks file for ansible-role-plantuml
+- name: prepare plantuml home
+  file:
+    path: "{{ plantuml_home }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+  become: yes
+
+- name: install plantuml
+  get_url:
+    url: "{{ plantuml_url }}"
+    dest: "{{ plantuml_home }}"
+    owner: "{{ ansible_user_id }}"

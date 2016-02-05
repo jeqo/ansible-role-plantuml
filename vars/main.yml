@@ -1,0 +1,5 @@
+---
+# vars file for ansible-role-plantuml
+plantuml_url: "http://downloads.sourceforge.net/project/plantuml/plantuml.jar"
+
+plantuml_home: /opt/plantuml
