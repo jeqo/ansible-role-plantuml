@@ -36,3 +36,11 @@
     -
       regexp: ^PATH=\$PLANT_UML
       line: PATH=$PLANT_UML/plantuml.jar:$PATH
+
+- name: set command
+  template:
+    src: plantuml.j2
+    dest: "/usr/bin/plantuml"
+    mode: "u=rwx,g=rx,o=r"
+    owner: "{{ ansible_user_id }}"
+  become: true
